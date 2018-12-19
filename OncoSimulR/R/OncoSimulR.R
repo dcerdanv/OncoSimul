@@ -1043,7 +1043,7 @@ plot.oncosimul <- function(x,
                            ) {
 
 
-    if(!(type %in% c("stacked", "stream", "line")))
+    if(!(type %in% c("stacked", "stream", "line", "fish")))
         stop("Type of plot unknown: it must be one of",
              "stacked, stream or line")
 
@@ -1206,7 +1206,7 @@ plotClonesSt <- function(z,
     ##  But my original plotting code runs faster and is simpler if 0 are
     ##  dealt as NAs (which also makes log transformations simpler).
     
-    if(type %in% c("stacked", "stream") )
+    if(type %in% c("stacked", "stream", "fish") )
         na.subs <- FALSE
     
     if(na.subs){
@@ -1292,21 +1292,35 @@ plotClonesSt <- function(z,
                           xlim = xlim,
                           ...) 
         } else if (type == "stream") {
-            plot.stream2(x = x,
-                         y = y,
-                         order.method = order.method,
-                         border = border,
-                         lwd = lwdStackedStream,
-                         col = cll$colors,
-                         frac.rand = stream.frac.rand,
-                         spar = stream.spar,
-                         center = stream.center,
-                         log = log,
-                         xlab = xlab,
-                         ylab = ylab,
-                         ylim = ylim,
-                         xlim = xlim,
-                         ...)
+          plot.stream2(x = x,
+                       y = y,
+                       order.method = order.method,
+                       border = border,
+                       lwd = lwdStackedStream,
+                       col = cll$colors,
+                       frac.rand = stream.frac.rand,
+                       spar = stream.spar,
+                       center = stream.center,
+                       log = log,
+                       xlab = xlab,
+                       ylab = ylab,
+                       ylim = ylim,
+                       xlim = xlim,
+                       ...)
+        } else if (type == "fish") {
+          # Add ggmuller fishplot method calling
+          plot.fish2(x = x,
+                        y = y,
+                        order.method = order.method,
+                        border = border,
+                        lwd = lwdStackedStream,
+                        col = cll$colors,
+                        log = log,
+                        xlab = xlab,
+                        ylab = ylab,
+                        ylim = ylim,
+                        xlim = xlim,
+                        ...) 
         }
         if(show == "drivers") {
             if(legend.ncols == "auto") {
