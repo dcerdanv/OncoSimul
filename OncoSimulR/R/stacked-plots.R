@@ -133,6 +133,31 @@ plot.stream2 <- function(
     }
 }
 
+plot.fish2 <- function(
+  x, y, 
+  order.method = "as.is", frac.rand=0.1, spar=0.2,
+  center=TRUE,
+  ylab="", xlab="",  
+  border = NULL, lwd=1, 
+  col=rainbow(length(y[1,])),
+  ylim=NULL,
+  log = "",
+  ...
+){
+  print("Fish plot")
+  
+  # population <- y
+  # num_of_clones <- x[["NumClones"]]
+  # time_points =  x
+  
+  # data <- as.vector(t(population[,2:(num_of_clones + 1)]))
+  # dimnames <- list(cloneid = c(1:num_of_clones), time= time_points)
+  # mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
+  # pop_df <- as.data.frame(as.table(mat))
+  # colnames(pop_df) <- c("Generation", "Identity", "Population")
+  
+  # print(pop_df)
+}
 
 
 ## plot.stacked makes a stacked plot where each y series is plotted on top
