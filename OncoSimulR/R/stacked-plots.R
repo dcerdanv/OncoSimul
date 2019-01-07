@@ -218,9 +218,10 @@ plot.fish2 <- function(
   ...
 ){
   print("Fish plot")
+  print(x)
   
   population <- y
-  num_of_clones <- x[["NumClones"]]
+  num_of_clones <- x["NumClones"]
   time_points = x
   
   data <- as.vector(t(population[,2:(num_of_clones + 1)]))
