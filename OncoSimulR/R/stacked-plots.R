@@ -231,7 +231,7 @@ plot.fish2 <- function(simulation){
     phyloTree <- phyloTree[!duplicated(phyloTree), ]
     edges <- t(apply(phyloTree, 1, function(x) match(x, genotypesLabels)))
     edges <- as.data.frame(edges)
-    edges <- na.omit(phyloTree)
+    edges <- na.omit(edges)
     colnames(edges) <- c("Parent", "Identity")
 
     Muller_df <- get_Muller_df(edges, pop_df)
