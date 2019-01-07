@@ -236,8 +236,9 @@ plot.fish2 <- function(simulation){
     edges <- as.data.frame(edges)
     edges <- na.omit(edges)
     edges <- t(apply(edges, 1, convert))
+    rownames(edges) <- 1:nrow(edges)
     colnames(edges) <- c("Parent", "Identity")
 
     Muller_df <- get_Muller_df(edges, pop_df)
-    Muller_plot(get_Muller_df(edges, pop_df))
+    Muller_plot(Muller_df)
 }
