@@ -206,18 +206,9 @@ plot.stacked2 <- function(
 
 
 
-plot.fish2 <- function(
-  x, y, 
-  order.method = "as.is", frac.rand=0.1, spar=0.2,
-  center=TRUE,
-  ylab="", xlab="",  
-  border = NULL, lwd=1, 
-  col=rainbow(length(y[1,])),
-  ylim=NULL,
-  log = "",
-  ...
-){
+plot.fish2 <- function(x){
   print("Fish plot")
+  print(x)
   
   # population <- y
   # num_of_clones <- x["NumClones"]
