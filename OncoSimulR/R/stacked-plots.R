@@ -223,7 +223,7 @@ plot.fish2 <- function(simulation){
     mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
     pop_df <- as.data.frame(as.table(mat))
     pop_df <- pop_df[,c(2, 1, 3)]
-    pop_df <- <- t(apply(pop_df, 1, convert))
+    pop_df <- t(apply(pop_df, 1, convert))
     colnames(pop_df) <- c("Identity", "Generation", "Population")
 
     # Parse phylogenetic tree from simulation into ggmuller format
