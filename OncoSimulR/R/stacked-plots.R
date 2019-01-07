@@ -206,19 +206,32 @@ plot.stacked2 <- function(
 
 
 
-plot.fish2 <- function(x){
-  print("Fish plot")
-  print(x)
-  
-  # population <- y
-  # num_of_clones <- x["NumClones"]
-  # time_points = x
-  
-  # data <- as.vector(t(population[,2:(num_of_clones + 1)]))
-  # dimnames <- list(cloneid = c(1:num_of_clones), time= time_points)
-  # mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
-  # pop_df <- as.data.frame(as.table(mat))
-  # colnames(pop_df) <- c("Generation", "Identity", "Population")
-  
-  # print(pop_df)
+plot.fish2 <- function(simulation){
+    print(simulation)
+    
+    # population <- y
+    # num_of_clones <- x["NumClones"]
+    # time_points = x
+    
+    # data <- as.vector(t(population[,2:(num_of_clones + 1)]))
+    # dimnames <- list(cloneid = c(1:num_of_clones), time= time_points)
+    # mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
+    # pop_df <- as.data.frame(as.table(mat))
+    # colnames(pop_df) <- c("Generation", "Identity", "Population")
+    
+    # print(pop_df)
+    
+    print(simulation)
+    
+    population <- simulation[["pops.by.time"]]
+    num_of_clones <- simulation[["NumClones"]]
+    time_points =  population[,1]
+    
+    data <- as.vector(t(population[,2:(num_of_clones + 1)]))
+    dimnames <- list(cloneid = c(1:num_of_clones), time = time_points)
+    mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
+    pop_df <- as.data.frame(as.table(mat))
+    colnames(pop_df) <- c("Generation", "Identity", "Population")
+    
+    print(pop_df)
 }

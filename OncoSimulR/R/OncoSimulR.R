@@ -1308,8 +1308,7 @@ plotClonesSt <- function(z,
                        xlim = xlim,
                        ...)
         } else if (type == "fish") {
-          # Add ggmuller fishplot method calling
-          plot.fish2(x = z) 
+          plot.fish2(simulation = z)
         }
         if(show == "drivers") {
             if(legend.ncols == "auto") {
