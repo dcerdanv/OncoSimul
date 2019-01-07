@@ -218,17 +218,16 @@ plot.fish2 <- function(
   ...
 ){
   print("Fish plot")
-  print(x)
   
-  population <- y
-  num_of_clones <- x["NumClones"]
-  time_points = x
+  # population <- y
+  # num_of_clones <- x["NumClones"]
+  # time_points = x
   
-  data <- as.vector(t(population[,2:(num_of_clones + 1)]))
-  dimnames <- list(cloneid = c(1:num_of_clones), time= time_points)
-  mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
-  pop_df <- as.data.frame(as.table(mat))
-  colnames(pop_df) <- c("Generation", "Identity", "Population")
+  # data <- as.vector(t(population[,2:(num_of_clones + 1)]))
+  # dimnames <- list(cloneid = c(1:num_of_clones), time= time_points)
+  # mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
+  # pop_df <- as.data.frame(as.table(mat))
+  # colnames(pop_df) <- c("Generation", "Identity", "Population")
   
-  print(pop_df)
+  # print(pop_df)
 }
