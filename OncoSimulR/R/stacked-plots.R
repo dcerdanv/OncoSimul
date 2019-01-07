@@ -210,10 +210,10 @@ plot.fish2 <- function(simulation){
     # Move this to somewhere else??
     library(ggmuller)
     
-    population <- simulation$pops.by.time
-    num_of_clones <- simulation$NumClones
+    population <- simulation[["pops.by.time"]]
+    num_of_clones <- simulation[["NumClones"]]
     time_points =  population[,1]
-    genotypesLabels = simulation$GenotypesLabels
+    genotypesLabels = simulation[["GenotypesLabels"]]
     convert <- function(x) if(is.factor(x)) as.numeric(as.character(x)) else x
 
     # Parse simulation's population by time table into a ggmuller friendly
@@ -221,13 +221,13 @@ plot.fish2 <- function(simulation){
     data <- as.vector(t(population[,2:(num_of_clones + 1)]))
     dimnames <- list(cloneid = c(1:num_of_clones), time = time_points)
     mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
-    pop_df <- as.data.frame(as.table(mat))
-    pop_df <- pop_df[,c(2, 1, 3)]
-    pop_df <- t(apply(pop_df, 1, convert))
-    colnames(pop_df) <- c("Identity", "Generation", "Population")
+    pop <- as.data.frame(as.table(mat))
+    pop <- t(apply(pop, 1, convert))
+    colnames(pop) <- c("Identity", "Generation", "Population")
+    pop <- pop[,c(2, 1, 3)]
 
     # Parse phylogenetic tree from simulation into ggmuller format
-    phyloTree <- simulation$other$PhylogDF
+    phyloTree <- simulation[["other"]][["PhylogDF"]]
     phyloTree <- as.data.frame(phyloTree)
     phyloTree <- phyloTree[,-3]
     phyloTree <- phyloTree[,-3]
