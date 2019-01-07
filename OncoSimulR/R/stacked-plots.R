@@ -21,19 +21,19 @@
 
 
 
-## plot.stream makes a "stream plot" where each y series is plotted 
+## plot.stream makes a "stream plot" where each y series is plotted
 ## as stacked filled polygons on alternating sides of a baseline.
 
 ## Arguments include:
 ## 'x' - a vector of values
 ## 'y' - a matrix of data series (columns) corresponding to x
-## 'order.method' = c("as.is", "max", "first") 
+## 'order.method' = c("as.is", "max", "first")
 ##  "as.is" - plot in order of y column
 ##  "max" - plot in order of when each y series reaches maximum value
 ##  "first" - plot in order of when each y series first value > 0
 ## 'center' - if TRUE, the stacked polygons will be centered so that the middle,
-## i.e. baseline ("g0"), of the stream is approximately equal to zero. 
-## Centering is done before the addition of random wiggle to the baseline. 
+## i.e. baseline ("g0"), of the stream is approximately equal to zero.
+## Centering is done before the addition of random wiggle to the baseline.
 ## 'frac.rand' - fraction of the overall data "stream" range used to define the range of
 ## random wiggle (uniform distrubution) to be added to the baseline 'g0'
 ## 'spar' - setting for smooth.spline function to make a smoothed version of baseline "g0"
@@ -43,11 +43,11 @@
 ## '...' - other plot arguments
 
 plot.stream2 <- function(
-                        x, y, 
+                        x, y,
                         order.method = "as.is", frac.rand=0.1, spar=0.2,
                         center=TRUE,
-                        ylab="", xlab="",  
-                        border = NULL, lwd=1, 
+                        ylab="", xlab="",
+                        border = NULL, lwd=1,
                         col=rainbow(length(y[1,])),
                         ylim=NULL,
                         log = "",
@@ -60,7 +60,7 @@ plot.stream2 <- function(
     border <- as.vector(matrix(border, nrow=ncol(y), ncol=1))
     col <- as.vector(matrix(col, nrow=ncol(y), ncol=1))
     lwd <- as.vector(matrix(lwd, nrow=ncol(y), ncol=1))
-    
+
     if(order.method == "max") {
         ord <- order(apply(y, 2, which.max))
         y <- y[, ord]
@@ -98,7 +98,7 @@ plot.stream2 <- function(
     mid <- apply(outer.lims, 1,
                  function(r) mean(c(max(r, na.rm=TRUE),
                                     min(r, na.rm=TRUE)), na.rm=TRUE))
-    
+
     ## center and wiggle
     if(center) {
         g0 <- -mid + runif(length(x),
@@ -139,7 +139,7 @@ plot.stream2 <- function(
 ## Arguments include:
 ## 'x' - a vector of values
 ## 'y' - a matrix of data series (columns) corresponding to x
-## 'order.method' = c("as.is", "max", "first") 
+## 'order.method' = c("as.is", "max", "first")
 ##  "as.is" - plot in order of y column
 ##  "max" - plot in order of when each y series reaches maximum value
 ##  "first" - plot in order of when each y series first value > 0
@@ -149,10 +149,10 @@ plot.stream2 <- function(
 ## '...' - other plot arguments
 
 plot.stacked2 <- function(
-                         x, y, 
+                         x, y,
                          order.method = "as.is",
-                         ylab="", xlab="", 
-                         border = NULL, lwd=1, 
+                         ylab="", xlab="",
+                         border = NULL, lwd=1,
                          col=rainbow(length(y[1,])),
                          ylim=NULL,
                          log = "",
@@ -207,6 +207,9 @@ plot.stacked2 <- function(
 
 
 plot.fish2 <- function(simulation){
+    # Move this to somewhere else??
+    library(ggmuller)
+    
     population <- simulation$pops.by.time
     num_of_clones <- simulation$NumClones
     time_points =  population[,1]
@@ -219,7 +222,7 @@ plot.fish2 <- function(simulation){
     mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
     pop_df <- as.data.frame(as.table(mat))
     colnames(pop_df) <- c("Identity", "Generation", "Population")
-    
+
     # Parse phylogenetic tree from simulation into ggmuller format
     phyloTree <- simulation$other$PhylogDF
     phyloTree <- as.data.frame(phyloTree)
@@ -230,7 +233,7 @@ plot.fish2 <- function(simulation){
     edges <- as.data.frame(edges)
     edges <- na.omit(df)
     colnames(edges) <- c("Parent", "Identity")
-    
+
     Muller_df <- get_Muller_df(edges, pop_df)
     Muller_plot(get_Muller_df(edges, pop_df))
 }
