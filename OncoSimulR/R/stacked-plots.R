@@ -207,16 +207,30 @@ plot.stacked2 <- function(
 
 
 plot.fish2 <- function(simulation){
-    population <- simulation[["pops.by.time"]]
-    num_of_clones <- simulation[["NumClones"]]
+    population <- simulation$pops.by.time
+    num_of_clones <- simulation$NumClones
     time_points =  population[,1]
-    
+    genotypesLabels = simulation1$GenotypesLabels
+
+    # Parse simulation's population by time table into a ggmuller friendly
+    # pouplation by time table
     data <- as.vector(t(population[,2:(num_of_clones + 1)]))
     dimnames <- list(cloneid = c(1:num_of_clones), time = time_points)
     mat <- matrix(data, ncol = length(time_points), nrow = num_of_clones, dimnames = dimnames)
     pop_df <- as.data.frame(as.table(mat))
-    colnames(pop_df) <- c("Generation", "Identity", "Population")
+    colnames(pop_df) <- c("Identity", "Generation", "Population")
     
-    # Muller_df <- get_Muller_df(edges, pop_df)
-    # Muller_plot(Muller_df)
+    # Parse phylogenetic tree from simulation into ggmuller format
+    phyloTree <- simulation$other$PhylogDF
+    phyloTree <- as.data.frame(phyloTree)
+    phyloTree <- phyloTree[,-3]
+    phyloTree <- phyloTree[,-3]
+    phyloTree <- phyloTree[!duplicated(df), ]
+    edges <- t(apply(phyloTree, 1, function(x) match(x, genotypesLabels)))
+    edges <- as.data.frame(edges)
+    edges <- na.omit(df)
+    colnames(edges) <- c("Parent", "Identity")
+    
+    Muller_df <- get_Muller_df(edges, pop_df)
+    Muller_plot(get_Muller_df(edges, pop_df))
 }
