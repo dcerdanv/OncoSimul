@@ -243,4 +243,5 @@ plot.fish2 <- function(simulation){
 
     Muller_df <- get_Muller_df(edges, pop)
     Muller_plot(Muller_df)
+    print("fish plots")
 }
