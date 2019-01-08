@@ -1307,9 +1307,7 @@ plotClonesSt <- function(z,
                        ylim = ylim,
                        xlim = xlim,
                        ...)
-        } else if (type == "fish") {
-          plot.fish2(simulation = z)
-        }
+        } 
         if(show == "drivers") {
             if(legend.ncols == "auto") {
                 if(length(cll$colorsLegend$Drivers) > 6) legend.ncols <- 2
@@ -1341,6 +1339,9 @@ plotClonesSt <- function(z,
                    col = cll$colors,
                    legend = ldrv,
                    ncol = legend.ncols)
+        }
+        if (type == "fish") {
+          plot.fish2(simulation = z)
         }
     }
 }
