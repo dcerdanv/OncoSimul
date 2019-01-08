@@ -214,7 +214,7 @@ plot.fish2 <- function(simulation){
     num_of_clones <- simulation[["NumClones"]]
     time_points =  population[,1]
     genotypesLabels = simulation[["GenotypesLabels"]]
-    convert <- function(x) if(is.factor(x)) as.numeric(as.character(x)) else x
+    convert <- function(x) as.numeric(as.character(x))
 
     # Parse simulation's population by time table into a ggmuller friendly
     # pouplation by time table
@@ -225,6 +225,7 @@ plot.fish2 <- function(simulation){
     pop <- t(apply(pop, 1, convert))
     colnames(pop) <- c("Identity", "Generation", "Population")
     pop <- pop[,c(2, 1, 3)]
+    pop <- as.data.frame(pop)
 
     # Parse phylogenetic tree from simulation into ggmuller format
     phyloTree <- simulation[["other"]][["PhylogDF"]]
@@ -238,6 +239,7 @@ plot.fish2 <- function(simulation){
     edges <- t(apply(edges, 1, convert))
     rownames(edges) <- 1:nrow(edges)
     colnames(edges) <- c("Parent", "Identity")
+    edges <- as.data.frame(edges)
 
     Muller_df <- get_Muller_df(edges, pop)
     Muller_plot(Muller_df)
