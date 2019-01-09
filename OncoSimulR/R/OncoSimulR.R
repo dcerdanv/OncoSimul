@@ -1041,6 +1041,9 @@ plot.oncosimul <- function(x,
                            legend.ncols = "auto",
                            ...
                            ) {
+    if (type == "fish") {
+        plot.fish2(simulation = x)
+    }
 
 
     if(!(type %in% c("stacked", "stream", "line", "fish")))
@@ -1261,9 +1264,7 @@ plotClonesSt <- function(z,
                    legend = ldrv,
                    ncol = legend.ncols)
         }
-    } else if (type == "fish") {
-      plot.fish2(simulation = z)
-    }else {
+    } else {
         ymax <- colSums(y)
         if((show == "drivers") || ((show == "genotypes") && (colauto))) {
             cll <- myhsvcols(ndr, ymax, srange = srange, vrange = vrange,
