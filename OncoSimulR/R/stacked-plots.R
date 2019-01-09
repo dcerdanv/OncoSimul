@@ -207,9 +207,6 @@ plot.stacked2 <- function(
 
 
 plot.fish2 <- function(simulation){
-    # Move this to somewhere else??
-    library(ggmuller)
-    
     population <- simulation[["pops.by.time"]]
     num_of_clones <- simulation[["NumClones"]]
     time_points =  population[,1]
