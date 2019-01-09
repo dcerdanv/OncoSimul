@@ -1049,6 +1049,8 @@ plot.oncosimul <- function(x,
   
   
     if (type == "fish") {
+      print("Fish plot execution")
+      print(x)
       plot.fish2(simulation = x)
     } else {
       if(!(show %in% c("genotypes", "drivers")))
