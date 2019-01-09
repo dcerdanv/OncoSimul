@@ -242,6 +242,7 @@ plot.fish2 <- function(simulation){
     edges <- as.data.frame(edges)
 
     Muller_df <- get_Muller_df(edges, pop)
+    print(Muller_df)
     Muller_plot(Muller_df)
     print("fish plots")
 }
