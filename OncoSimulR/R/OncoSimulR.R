@@ -1261,7 +1261,9 @@ plotClonesSt <- function(z,
                    legend = ldrv,
                    ncol = legend.ncols)
         }
-    } else {
+    } else if (type == "fish") {
+      plot.fish2(simulation = z)
+    }else {
         ymax <- colSums(y)
         if((show == "drivers") || ((show == "genotypes") && (colauto))) {
             cll <- myhsvcols(ndr, ymax, srange = srange, vrange = vrange,
@@ -1307,8 +1309,6 @@ plotClonesSt <- function(z,
                        ylim = ylim,
                        xlim = xlim,
                        ...)
-        } else if (type == "fish") {
-          plot.fish2(simulation = z)
         }
         if(show == "drivers") {
             if(legend.ncols == "auto") {
